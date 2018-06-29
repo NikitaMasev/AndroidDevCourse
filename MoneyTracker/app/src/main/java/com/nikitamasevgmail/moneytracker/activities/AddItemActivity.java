@@ -1,11 +1,12 @@
-package com.nikitamasevgmail.moneytracker;
+package com.nikitamasevgmail.moneytracker.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.nikitamasevgmail.moneytracker.textWatchers.ETWatcher;
+import com.nikitamasevgmail.moneytracker.R;
 
 public class AddItemActivity extends AppCompatActivity {
 

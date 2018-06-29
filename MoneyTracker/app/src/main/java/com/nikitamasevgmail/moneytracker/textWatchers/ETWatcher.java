@@ -1,4 +1,4 @@
-package com.nikitamasevgmail.moneytracker;
+package com.nikitamasevgmail.moneytracker.textWatchers;
 
 import android.text.Editable;
 import android.text.TextWatcher;

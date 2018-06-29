@@ -5,7 +5,7 @@
     android:background="@drawable/background_add_item"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddItemActivity">
+    tools:context=".activities.AddItemActivity">
     
     <LinearLayout
         android:orientation="horizontal"
@@ -14,7 +14,8 @@
         android:paddingLeft="22dp"
         android:paddingRight="22dp"
         android:gravity="center_vertical"
-        android:layout_height="68dp">
+        android:layout_height="68dp"
+        android:elevation="5dp">
 
         <EditText
             android:id="@+id/name_addItem"

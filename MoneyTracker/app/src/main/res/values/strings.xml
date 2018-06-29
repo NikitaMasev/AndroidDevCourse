@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MoneyTracker</string>
+    <string name="add_item_header">Новая запись</string>
+    <string name="nameEditTextHint">Название</string>
+    <string name="rubEditTextHint">0</string>
+    <string name="rubEditTextSymbol">₽</string>
 </resources>

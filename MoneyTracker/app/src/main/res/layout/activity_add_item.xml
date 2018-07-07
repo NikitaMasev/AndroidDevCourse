@@ -20,7 +20,7 @@
         <EditText
             android:id="@+id/name_addItem"
             android:background="@null"
-            android:hint="@string/nameEditTextHint"
+            android:hint="@string/name_edit_text_hint"
             android:layout_weight="1"
             android:maxLines="1"
             android:layout_width="match_parent"
@@ -31,7 +31,7 @@
             android:id="@+id/price_addItem"
             android:layout_marginLeft="8dp"
             android:background="@null"
-            android:hint="@string/rubEditTextHint"
+            android:hint="@string/rub_edit_text_hint"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
 
         <TextView
             android:labelFor="@id/price_addItem"
-            android:text="@string/rubEditTextSymbol"
+            android:text="@string/rub_text_symbol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

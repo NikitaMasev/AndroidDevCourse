@@ -3,7 +3,12 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
     <color name="colorBackgroundText">#84c0c5</color>
     <color name="colorText">#ffffff</color>
     <color name="colorBackgroundAddItemLL">#ffffff</color>
+
+    <color name="colorItemRV">#fcc31e</color>
+    <color name="colorItemRVDark">#daa10c</color>
+
 </resources>

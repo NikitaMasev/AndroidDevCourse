@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">MoneyTracker</string>
-    <string name="add_item_header">Новая запись</string>
-    <string name="nameEditTextHint">Название</string>
-    <string name="rubEditTextHint">0</string>
-    <string name="rubEditTextSymbol">₽</string>
+    <string name="add_item_activity_header">Новая запись</string>
+    <string name="name_edit_text_hint">Название</string>
+    <string name="rub_edit_text_hint">0</string>
+    <string name="rub_text_symbol">₽</string>
+    <string name="item_list_activity_header">Учет бюджета</string>
+
+    <string name="pattern_format_tvPrice">%1$d %2$s</string>
+
 </resources>

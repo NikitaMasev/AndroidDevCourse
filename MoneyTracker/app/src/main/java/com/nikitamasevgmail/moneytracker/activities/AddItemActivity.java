@@ -22,7 +22,7 @@ public class AddItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
         
-        setTitle(R.string.add_item_header);
+        setTitle(R.string.add_item_activity_header);
 
         editTextName = findViewById(R.id.name_addItem);
         editTextPrice = findViewById(R.id.price_addItem);

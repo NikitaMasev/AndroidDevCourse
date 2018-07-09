@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#95c9b8</color>
+    <color name="colorPrimaryDark">#87b5a6</color>
+    <color name="colorAccent">#1ca498</color>
+
+    <color name="colorPrimaryBright">#3ab7ae</color>
 
     <color name="colorBackgroundText">#84c0c5</color>
     <color name="colorText">#ffffff</color>
     <color name="colorBackgroundAddItemLL">#ffffff</color>
+    <color name="colorTabInactive">#ddede8</color>
+
+    <color name="colorTabIndicator">#ffff8d</color>
 
     <color name="colorItemRV">#fcc31e</color>
     <color name="colorItemRVDark">#daa10c</color>
+    <color name="colorItemRVSelected">#985305</color>
 
 </resources>

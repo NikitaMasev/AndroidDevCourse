@@ -7,5 +7,12 @@
     <string name="item_list_activity_header">Учет бюджета</string>
 
     <string name="pattern_format_tvPrice">%1$d %2$s</string>
+    <string name="text_balance">Ваш баланс</string>
+
+    <string-array name="tab_titles">
+        <item>Доходы</item>
+        <item>Расходы</item>
+        <item>Баланс</item>
+    </string-array>
 
 </resources>

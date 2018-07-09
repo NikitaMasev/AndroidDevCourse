@@ -1,19 +1,32 @@
 package com.nikitamasevgmail.moneytracker.activities;
 
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.nikitamasevgmail.moneytracker.R;
+import com.nikitamasevgmail.moneytracker.adapters.MainPagesAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "INFO";
 
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        viewPager = findViewById(R.id.viewPager);
+        tabLayout = findViewById(R.id.tabLayout);
+
+        MainPagesAdapter mainPagesAdapter = new MainPagesAdapter(getSupportFragmentManager(),this);
+        viewPager.setAdapter(mainPagesAdapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     @Override

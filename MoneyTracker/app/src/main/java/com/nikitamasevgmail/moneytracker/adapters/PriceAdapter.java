@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.nikitamasevgmail.moneytracker.R;
 import com.nikitamasevgmail.moneytracker.data.Price;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PriceAdapter extends RecyclerView.Adapter<PriceAdapter.PriceViewHolder> {
@@ -24,9 +25,10 @@ public class PriceAdapter extends RecyclerView.Adapter<PriceAdapter.PriceViewHol
     private Context context;
     private List<Price> priceList;
 
-    public PriceAdapter(Context context, List<Price> priceList) {
+    public PriceAdapter(Context context) {
         this.context = context;
-        this.priceList = priceList;
+        this.priceList = new ArrayList<>();
+        createDataList();
     }
 
     @NonNull
@@ -64,10 +66,26 @@ public class PriceAdapter extends RecyclerView.Adapter<PriceAdapter.PriceViewHol
 
             String strFormatted = String.format(context.getResources().getString(R.string.pattern_format_tvPrice), price.getPrice(), context.getResources().getString(R.string.rub_text_symbol));
             SpannableString finalSpannableStr = new SpannableString(strFormatted);
-            finalSpannableStr.setSpan(new ForegroundColorSpan(context.getResources().getColor(R.color.colorPrimary)), String.valueOf(price.getPrice()).length() + 1,
+            finalSpannableStr.setSpan(new ForegroundColorSpan(context.getResources().getColor(R.color.colorTabInactive)), String.valueOf(price.getPrice()).length() + 1,
                     String.valueOf(price.getPrice()).length() + 2, 0);
 
             tvPrice.setText(finalSpannableStr);
         }
+    }
+
+    private void createDataList() {
+        priceList.add(new Price("Milk",70));
+        priceList.add(new Price("Bread",30));
+        priceList.add(new Price("Cheese",325));
+        priceList.add(new Price("Courses",12000));
+        priceList.add(new Price("",0));
+        priceList.add(new Price("Lamborgini Aventador",23500000));
+        priceList.add(new Price("Smartphone",45000));
+        priceList.add(new Price("Cake",305));
+        priceList.add(new Price("CPU",35000));
+        priceList.add(new Price("Lime",530));
+        priceList.add(new Price("GPU",250000));
+        priceList.add(new Price("Eggs",275));
+        priceList.add(new Price("House",589100014));
     }
 }

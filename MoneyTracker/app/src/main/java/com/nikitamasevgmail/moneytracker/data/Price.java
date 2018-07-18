@@ -2,22 +2,27 @@ package com.nikitamasevgmail.moneytracker.data;
 
 public class Price {
 
-    private String title;
+    public static final String TYPE_UNKNOWN = "unknown";
+    public static final String TYPE_INCOMES = "incomes";
+    public static final String TYPE_EXPENSES = "expenses";
+
+    private int id;
+    private String name;
     private int price;
-    private String comment;
+    private String type;
 
-    public Price(String title, int price) {
-        this.title = title;
+    public Price(String name, int price, String type) {
+        this.name = name;
         this.price = price;
-
+        this.type = type;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getPrice() {
@@ -26,13 +31,5 @@ public class Price {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
     }
 }

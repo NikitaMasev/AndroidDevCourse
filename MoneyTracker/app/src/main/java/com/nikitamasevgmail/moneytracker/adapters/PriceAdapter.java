@@ -28,7 +28,11 @@ public class PriceAdapter extends RecyclerView.Adapter<PriceAdapter.PriceViewHol
     public PriceAdapter(Context context) {
         this.context = context;
         this.priceList = new ArrayList<>();
-        createDataList();
+    }
+
+    public void setData(List<Price> priceList) {
+         this.priceList = priceList;
+         notifyDataSetChanged();
     }
 
     @NonNull
@@ -62,7 +66,7 @@ public class PriceAdapter extends RecyclerView.Adapter<PriceAdapter.PriceViewHol
         }
 
         private void applyData(Price price) {
-            tvTitle.setText(price.getTitle());
+            tvTitle.setText(price.getName());
 
             String strFormatted = String.format(context.getResources().getString(R.string.pattern_format_tvPrice), price.getPrice(), context.getResources().getString(R.string.rub_text_symbol));
             SpannableString finalSpannableStr = new SpannableString(strFormatted);
@@ -71,21 +75,5 @@ public class PriceAdapter extends RecyclerView.Adapter<PriceAdapter.PriceViewHol
 
             tvPrice.setText(finalSpannableStr);
         }
-    }
-
-    private void createDataList() {
-        priceList.add(new Price("Milk",70));
-        priceList.add(new Price("Bread",30));
-        priceList.add(new Price("Cheese",325));
-        priceList.add(new Price("Courses",12000));
-        priceList.add(new Price("",0));
-        priceList.add(new Price("Lamborgini Aventador",23500000));
-        priceList.add(new Price("Smartphone",45000));
-        priceList.add(new Price("Cake",305));
-        priceList.add(new Price("CPU",35000));
-        priceList.add(new Price("Lime",530));
-        priceList.add(new Price("GPU",250000));
-        priceList.add(new Price("Eggs",275));
-        priceList.add(new Price("House",589100014));
     }
 }

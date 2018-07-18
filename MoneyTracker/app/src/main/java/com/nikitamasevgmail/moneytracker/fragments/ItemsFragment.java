@@ -6,40 +6,45 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.nikitamasevgmail.moneytracker.retrofit.Api;
+import com.nikitamasevgmail.moneytracker.retrofit.App;
 import com.nikitamasevgmail.moneytracker.R;
 import com.nikitamasevgmail.moneytracker.adapters.PriceAdapter;
 import com.nikitamasevgmail.moneytracker.data.Price;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ItemsFragment extends Fragment {
 
-    private static final int TYPE_UNKNOWN = -1;
-    public static final int TYPE_INCOMES = 1;
-    public static final int TYPE_EXPENSES = 2;
-
     public static final String TYPE_KEY = "type";
-
-    private int type = TYPE_INCOMES;
+    private String type;
 
     private RecyclerView rvAccBudget;
     private LinearLayoutManager linearLayoutManager;
+
+    private PriceAdapter priceAdapter;
+    private Api api;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Bundle bundle = getArguments();
-        type = bundle.getInt(TYPE_KEY,TYPE_UNKNOWN);
+        type = bundle.getString(TYPE_KEY,Price.TYPE_EXPENSES);
 
-        if (type == TYPE_UNKNOWN) {
+        if (type.equals(Price.TYPE_UNKNOWN)) {
             throw new IllegalArgumentException("UNKNOWN TYPE OF FRAGMENT");
         }
+
+        api = ((App) getActivity().getApplication()).getApi();
     }
 
     @Nullable
@@ -56,16 +61,36 @@ public class ItemsFragment extends Fragment {
         linearLayoutManager = new LinearLayoutManager(getContext());
         rvAccBudget = view.findViewById(R.id.rv_item_list_activity);
         rvAccBudget.setLayoutManager(linearLayoutManager);
-        rvAccBudget.setAdapter(new PriceAdapter(getContext()));
+        priceAdapter = new PriceAdapter(getContext());
+        rvAccBudget.setAdapter(priceAdapter);
         //rvAccBudget.addItemDecoration(new PriceDividerItemDecorator(getContext(),linearLayoutManager.getOrientation()));
+
+        loadPrices();
     }
 
-    public static ItemsFragment createItemsFragment (int type) {
+    public static ItemsFragment createItemsFragment (String type) {
         Fragment fragment = new ItemsFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(ItemsFragment.TYPE_KEY,type);
+        bundle.putString(ItemsFragment.TYPE_KEY,type);
         fragment.setArguments(bundle);
         return (ItemsFragment) fragment;
+    }
+
+    private void loadPrices() {
+        Call<List<Price>> call = api.getPrice(type);
+
+        call.enqueue(new Callback<List<Price>>() {
+            @Override
+            public void onResponse(Call<List<Price>> call, Response<List<Price>> response) {
+                priceAdapter.setData(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<Price>> call, Throwable t) {
+
+            }
+        });
+
     }
 
 }

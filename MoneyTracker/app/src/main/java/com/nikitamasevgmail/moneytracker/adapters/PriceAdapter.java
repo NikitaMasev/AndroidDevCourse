@@ -54,6 +54,11 @@ public class PriceAdapter extends RecyclerView.Adapter<PriceAdapter.PriceViewHol
         return priceList.size();
     }
 
+    public void addPrice(Price price) {
+        priceList.add(price);
+        notifyItemChanged(priceList.size());
+    }
+
     class PriceViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView tvTitle;

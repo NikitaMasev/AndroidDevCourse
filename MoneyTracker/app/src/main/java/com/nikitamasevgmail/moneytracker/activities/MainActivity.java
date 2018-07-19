@@ -4,6 +4,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.nikitamasevgmail.moneytracker.R;
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = "INFO";
 
     private ViewPager viewPager;
+    private Toolbar toolbar;
     private TabLayout tabLayout;
 
     @Override
@@ -21,8 +23,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        toolbar = findViewById(R.id.toolBar_main);
         viewPager = findViewById(R.id.viewPager);
         tabLayout = findViewById(R.id.tabLayout);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.item_list_activity_header);
 
         MainPagesAdapter mainPagesAdapter = new MainPagesAdapter(getSupportFragmentManager(),this);
         viewPager.setAdapter(mainPagesAdapter);

@@ -5,8 +5,18 @@
     android:background="@drawable/bg_pattern"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activities.AddItemActivity">
-    
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolBar_add_item"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:elevation="8dp"
+        />
+
     <LinearLayout
         android:orientation="horizontal"
         android:background="@color/colorBackgroundAddItemLL"
@@ -15,7 +25,7 @@
         android:paddingRight="22dp"
         android:gravity="center_vertical"
         android:layout_height="68dp"
-        android:elevation="5dp">
+        android:elevation="4dp">
 
         <EditText
             android:id="@+id/name_addItem"

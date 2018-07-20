@@ -33,12 +33,11 @@ public class ItemsFragment extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "ItemsFragment";
 
-    private static final int ADD_ITEM_REQUEST_CODE = 123;
+    public static final int ADD_ITEM_REQUEST_CODE = 123;
     public static final String TYPE_KEY = "type";
     private String type;
 
     private RecyclerView rvAccBudget;
-    private FloatingActionButton fab;
     private LinearLayoutManager linearLayoutManager;
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -86,9 +85,6 @@ public class ItemsFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-        fab = view.findViewById(R.id.fab_fragment_items);
-        fab.setOnClickListener(this);
-
         loadPrices();
     }
 
@@ -120,20 +116,20 @@ public class ItemsFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.fab_fragment_items) {
-            Intent intent = new Intent(getContext(), AddItemActivity.class);
-            intent.putExtra(AddItemActivity.TYPE_KEY,type);
-            startActivityForResult(intent,ADD_ITEM_REQUEST_CODE);
-        }
+
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if ((requestCode == ADD_ITEM_REQUEST_CODE) && (resultCode == Activity.RESULT_OK)) {
             Price price = data.getParcelableExtra(AddItemActivity.TYPE_KEY_DATA);
-            priceAdapter.addPrice(price);
+
+            if (price.getType().equals(type)) {
+                priceAdapter.addPrice(price);
+            }
         }
 
         super.onActivityResult(requestCode, resultCode, data);
     }
+
 }

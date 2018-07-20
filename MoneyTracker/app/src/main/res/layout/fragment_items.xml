@@ -20,16 +20,4 @@
             />
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_fragment_items"
-        app:fabSize="normal"
-        android:src="@drawable/ic_add_active_24dp"
-        android:tint="@color/colorFabTint"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="70dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
 </RelativeLayout>

@@ -13,9 +13,9 @@ import com.nikitamasevgmail.moneytracker.fragments.ItemsFragment;
 
 public class MainPagesAdapter extends FragmentPagerAdapter {
 
-    private static final int PAGE_INCOMES = 0;
-    private static final int PAGE_EXPENSES = 1;
-    private static final int PAGE_BALANCE = 2;
+    public static final int PAGE_INCOMES = 0;
+    public static final int PAGE_EXPENSES = 1;
+    public static final int PAGE_BALANCE = 2;
 
     private String[] titles;
 

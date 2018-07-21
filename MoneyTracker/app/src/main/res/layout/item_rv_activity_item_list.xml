@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/item_bg"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -18,7 +19,6 @@
         android:layout_weight="1"
         android:padding="16dp"
         tools:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-        android:background="@color/colorItemRV"
         android:textColor="@color/colorText"
         />
 
@@ -29,8 +29,8 @@
         android:padding="16dp"
         android:gravity="center"
         tools:text="354511544545₽"
-        android:background="@color/colorItemRVDark"
         android:textColor="@color/colorText"
+        android:background="@color/colorShadow"
         />
 
 

@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
+
 import com.nikitamasevgmail.moneytracker.R;
 import com.nikitamasevgmail.moneytracker.adapters.MainPagesAdapter;
 import com.nikitamasevgmail.moneytracker.fragments.ItemsFragment;
@@ -22,13 +23,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ViewPager viewPager;
     private Toolbar toolbar;
     private TabLayout tabLayout;
-    private FloatingActionButton fab;
-    private String[] fragments;
+    private static FloatingActionButton fab;
+    private MainPagesAdapter mainPagesAdapter;
+    private String[] fragmentsName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        fragmentsName = getResources().getStringArray(R.array.fragments_type);
 
         toolbar = findViewById(R.id.toolBar_main);
         viewPager = findViewById(R.id.viewPager);
@@ -41,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.item_list_activity_header);
 
-        MainPagesAdapter mainPagesAdapter = new MainPagesAdapter(getSupportFragmentManager(), this);
+        mainPagesAdapter = new MainPagesAdapter(getSupportFragmentManager(), this);
         viewPager.setAdapter(mainPagesAdapter);
         tabLayout.setupWithViewPager(viewPager);
     }
@@ -79,10 +83,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.fab_fragment_items) {
-            fragments = getResources().getStringArray(R.array.fragments_type);
-
             Intent intent = new Intent(this, AddItemActivity.class);
-            intent.putExtra(AddItemActivity.TYPE_KEY, fragments[viewPager.getCurrentItem()]);
+            intent.putExtra(AddItemActivity.TYPE_KEY, fragmentsName[viewPager.getCurrentItem()]);
             startActivityForResult(intent, ItemsFragment.ADD_ITEM_REQUEST_CODE);
         }
     }
@@ -114,6 +116,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 fab.setEnabled(true);
                 break;
             case ViewPager.SCROLL_STATE_DRAGGING:
+                for (Fragment fragment: mainPagesAdapter.getFragmentsActionMode()) {
+                    ((ItemsFragment) fragment).finishActionMode();
+                }
                 fab.setEnabled(false);
                 break;
             case ViewPager.SCROLL_STATE_SETTLING:
@@ -129,5 +134,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (Fragment fragment: getSupportFragmentManager().getFragments()) {
             fragment.onActivityResult(requestCode,resultCode,data);
         }
+    }
+
+    public static FloatingActionButton getFab() {
+        return fab;
     }
 }

@@ -11,6 +11,9 @@ import com.nikitamasevgmail.moneytracker.data.Price;
 import com.nikitamasevgmail.moneytracker.fragments.BalanceFragment;
 import com.nikitamasevgmail.moneytracker.fragments.ItemsFragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainPagesAdapter extends FragmentPagerAdapter {
 
     public static final int PAGE_INCOMES = 0;
@@ -18,20 +21,26 @@ public class MainPagesAdapter extends FragmentPagerAdapter {
     public static final int PAGE_BALANCE = 2;
 
     private String[] titles;
+    private List<Fragment> fragmentsActionMode;
 
     public MainPagesAdapter(FragmentManager fm, Context context) {
         super(fm);
         titles = context.getResources().getStringArray(R.array.tab_titles);
+        fragmentsActionMode = new ArrayList<>();
     }
 
     @Override
     public Fragment getItem(int position) {
         switch (position) {
             case PAGE_INCOMES:
-                return ItemsFragment.createItemsFragment(Price.TYPE_INCOMES);
+                ItemsFragment incomes = ItemsFragment.createItemsFragment(Price.TYPE_INCOMES);
+                fragmentsActionMode.add(incomes);
+                return incomes;
 
             case PAGE_EXPENSES:
-                return ItemsFragment.createItemsFragment(Price.TYPE_EXPENSES);
+                ItemsFragment expenses = ItemsFragment.createItemsFragment(Price.TYPE_EXPENSES);
+                fragmentsActionMode.add(expenses);
+                return expenses;
 
             case PAGE_BALANCE:
                 return new BalanceFragment();
@@ -50,5 +59,9 @@ public class MainPagesAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         return titles[position];
+    }
+
+    public List<Fragment> getFragmentsActionMode() {
+        return fragmentsActionMode;
     }
 }

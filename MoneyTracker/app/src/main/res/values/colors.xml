@@ -5,7 +5,8 @@
     <color name="colorAccent">#1ca498</color>
 
     <color name="colorPrimaryBright">#3ab7ae</color>
-
+    
+    <color name="colorShadow">#30303030</color>
     <color name="colorBackgroundText">#84c0c5</color>
     <color name="colorText">#ffffff</color>
     <color name="colorBackgroundAddItemLL">#ffffff</color>

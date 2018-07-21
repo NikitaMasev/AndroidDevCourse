@@ -8,6 +8,11 @@
 
     <string name="pattern_format_tvPrice">%1$d %2$s</string>
     <string name="text_balance">Ваш баланс</string>
+    <string name="title_remove_menu">Удалить</string>
+    <string name="title_confirmation_dialog">Удаление</string>
+    <string name="msg_confirmation_dialog">Вы уверены?</string>
+    <string name="name_positive_btn_confirmation_dialog">Да</string>
+    <string name="name_negative_btn_confirmation_dialog">Нет</string>
 
     <string-array name="tab_titles">
         <item>Доходы</item>

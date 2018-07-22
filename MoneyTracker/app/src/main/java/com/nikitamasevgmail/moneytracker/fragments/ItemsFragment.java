@@ -148,19 +148,13 @@ public class ItemsFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+
     /*
         ACTION MODE
      */
 
     private ActionMode actionMode = null;
 
-    public void finishActionMode () {
-        if (actionMode == null) {
-            return;
-        }
-
-        actionMode.finish();
-    }
     private class PriceAdapterManager implements PriceAdapterListener {
 
         @Override
@@ -191,8 +185,6 @@ public class ItemsFragment extends Fragment implements View.OnClickListener {
         private ActionMode.Callback actionModeCallback = new ActionMode.Callback() {
             @Override
             public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                MainActivity.getFab().hide();
-
                 MenuInflater inflater = new MenuInflater(getContext());
                 inflater.inflate(R.menu.prices_menu, menu);
                 return true;
@@ -215,8 +207,6 @@ public class ItemsFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onDestroyActionMode(ActionMode mode) {
-                MainActivity.getFab().show();
-
                 priceAdapter.clearSelections();
                 actionMode = null;
             }
@@ -238,7 +228,7 @@ public class ItemsFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onClickNegative() {
-
+                actionMode.finish();
             }
         }
     }

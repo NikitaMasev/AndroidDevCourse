@@ -13,6 +13,12 @@
     <string name="msg_confirmation_dialog">Вы уверены?</string>
     <string name="name_positive_btn_confirmation_dialog">Да</string>
     <string name="name_negative_btn_confirmation_dialog">Нет</string>
+    <string name="tv_text_info">Ваш незаменимый помощник \nв управлении бюджетом</string>
+    <string name="btn_text_logging">ВОЙТИ</string>
+
+    <string name="status_loging_ok">Successfully login</string>
+    <string name="status_loging_failed">Authentication failed</string>
+    <string name="status_loging_canceled">Authentication canceled</string>
 
     <string-array name="tab_titles">
         <item>Доходы</item>

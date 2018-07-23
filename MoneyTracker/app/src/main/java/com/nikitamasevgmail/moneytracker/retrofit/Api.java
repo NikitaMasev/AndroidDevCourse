@@ -1,6 +1,9 @@
 package com.nikitamasevgmail.moneytracker.retrofit;
 
+import com.nikitamasevgmail.moneytracker.data.AddPriceResult;
+import com.nikitamasevgmail.moneytracker.data.AuthResult;
 import com.nikitamasevgmail.moneytracker.data.Price;
+import com.nikitamasevgmail.moneytracker.data.RemovePriceResult;
 
 import java.util.List;
 
@@ -12,10 +15,16 @@ import retrofit2.http.Query;
 
 public interface Api {
 
-    @GET("/items")
+    @GET("auth")
+    Call<AuthResult> auth(@Query("social_user_id") String userId);
+
+    @GET("items")
     Call<List<Price>> getPrice(@Query("type") String type);
 
-    @POST("/items/add")
-    void addPrice(@Body() String type);
+    @POST("items/add")
+    Call<AddPriceResult> addPrice(@Query("price") int price, @Query("name") String name, @Query("type") String type);
+
+    @POST("items/remove")
+    Call<RemovePriceResult> removePrice(@Query("id") int id);
 
 }

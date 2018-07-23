@@ -16,6 +16,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,6 +25,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nikitamasevgmail.moneytracker.activities.MainActivity;
+import com.nikitamasevgmail.moneytracker.data.AddPriceResult;
+import com.nikitamasevgmail.moneytracker.data.RemovePriceResult;
 import com.nikitamasevgmail.moneytracker.dialogs.ConfirmationDialog;
 import com.nikitamasevgmail.moneytracker.listeners.ConfirmationDialogListener;
 import com.nikitamasevgmail.moneytracker.listeners.PriceAdapterListener;
@@ -33,6 +36,7 @@ import com.nikitamasevgmail.moneytracker.retrofit.App;
 import com.nikitamasevgmail.moneytracker.R;
 import com.nikitamasevgmail.moneytracker.adapters.PriceAdapter;
 import com.nikitamasevgmail.moneytracker.data.Price;
+import com.nikitamasevgmail.moneytracker.retrofit.ServerStatus;
 
 import java.util.List;
 
@@ -49,7 +53,9 @@ public class ItemsFragment extends Fragment implements View.OnClickListener {
     private SwipeRefreshLayout swipeRefreshLayout;
 
     private PriceAdapter priceAdapter;
+
     private Api api;
+    private App app;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,8 +67,8 @@ public class ItemsFragment extends Fragment implements View.OnClickListener {
         if (type.equals(Price.TYPE_UNKNOWN)) {
             throw new IllegalArgumentException("UNKNOWN TYPE OF FRAGMENT");
         }
-
-        api = ((App) getActivity().getApplication()).getApi();
+        app = (App) getActivity().getApplication();
+        api = app.getApi();
     }
 
     @Nullable
@@ -135,19 +141,55 @@ public class ItemsFragment extends Fragment implements View.OnClickListener {
             Price price = data.getParcelableExtra(AddItemActivity.TYPE_KEY_DATA);
 
             if (price.getType().equals(type)) {
-                priceAdapter.addPrice(price);
+                addPrice(price);
             }
         }
 
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    private void addPrice (final Price price) {
+        Call<AddPriceResult> call = api.addPrice(price.getPrice(), price.getName(), price.getType());
+        call.enqueue(new Callback<AddPriceResult>() {
+            @Override
+            public void onResponse(Call<AddPriceResult> call, Response<AddPriceResult> response) {
+                AddPriceResult addPriceResult = response.body();
+                if (addPriceResult.getStatus().equals(ServerStatus.SERVER_OK)) {
+                    priceAdapter.addPrice(price);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddPriceResult> call, Throwable t) {
+
+            }
+        });
+    }
+
     private void removeSelectedPrices() {
         for (int i = priceAdapter.getSelectedPrices().size() - 1; i>=0; i--) {
-            priceAdapter.remove(priceAdapter.getSelectedPrices().get(i));
+            Price deletedLocalPrice = priceAdapter.remove(priceAdapter.getSelectedPrices().get(i));
+            removeSelectedPricesFromServer(deletedLocalPrice);
         }
     }
 
+    private void removeSelectedPricesFromServer(Price delPrice) {
+        Call<RemovePriceResult> removePriceResultCall = api.removePrice(delPrice.getId());
+        removePriceResultCall.enqueue(new Callback<RemovePriceResult>() {
+            @Override
+            public void onResponse(Call<RemovePriceResult> call, Response<RemovePriceResult> response) {
+                RemovePriceResult removePriceResult = response.body();
+                if (removePriceResult.getStatus().equals(ServerStatus.SERVER_OK)) {
+                    Log.d(TAG, "DELETED FROM SERVER");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RemovePriceResult> call, Throwable t) {
+
+            }
+        });
+    }
 
     /*
         ACTION MODE

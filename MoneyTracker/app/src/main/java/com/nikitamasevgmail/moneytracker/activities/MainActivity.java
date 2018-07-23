@@ -17,6 +17,7 @@ import android.view.View;
 import com.nikitamasevgmail.moneytracker.R;
 import com.nikitamasevgmail.moneytracker.adapters.MainPagesAdapter;
 import com.nikitamasevgmail.moneytracker.fragments.ItemsFragment;
+import com.nikitamasevgmail.moneytracker.retrofit.App;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, ViewPager.OnPageChangeListener {
 
@@ -26,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private static FloatingActionButton fab;
-    private MainPagesAdapter mainPagesAdapter;
     private String[] fragmentsName;
     private ActionMode actionMode = null;
 
@@ -48,8 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.item_list_activity_header);
 
-        mainPagesAdapter = new MainPagesAdapter(getSupportFragmentManager(), this);
-        viewPager.setAdapter(mainPagesAdapter);
+
         tabLayout.setupWithViewPager(viewPager);
     }
 
@@ -62,7 +61,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
+
+        if (((App)getApplication()).isAuthorized()) {
+            initTabs();
+        } else {
+            Intent intent = new Intent(this, AuthActivity.class);
+            startActivity(intent);
+        }
+
         Log.d(TAG, "onResume");
+    }
+
+    private void initTabs() {
+        MainPagesAdapter mainPagesAdapter = new MainPagesAdapter(getSupportFragmentManager(), this);
+        viewPager.setAdapter(mainPagesAdapter);
     }
 
     @Override

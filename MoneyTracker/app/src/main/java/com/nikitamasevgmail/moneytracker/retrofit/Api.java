@@ -2,6 +2,7 @@ package com.nikitamasevgmail.moneytracker.retrofit;
 
 import com.nikitamasevgmail.moneytracker.data.AddPriceResult;
 import com.nikitamasevgmail.moneytracker.data.AuthResult;
+import com.nikitamasevgmail.moneytracker.data.BalanceResult;
 import com.nikitamasevgmail.moneytracker.data.Price;
 import com.nikitamasevgmail.moneytracker.data.RemovePriceResult;
 
@@ -26,5 +27,8 @@ public interface Api {
 
     @POST("items/remove")
     Call<RemovePriceResult> removePrice(@Query("id") int id);
+
+    @GET("balance")
+    Call<BalanceResult> getBalance();
 
 }

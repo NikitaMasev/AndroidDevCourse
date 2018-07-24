@@ -5,7 +5,8 @@
     <string name="rub_edit_text_hint">0</string>
     <string name="rub_text_symbol">₽</string>
     <string name="item_list_activity_header">Учет бюджета</string>
-
+    
+    <string name="pattern_format_balance">%1$d \u20bd</string>
     <string name="pattern_format_tvPrice">%1$d %2$s</string>
     <string name="text_balance">Ваш баланс</string>
     <string name="title_remove_menu">Удалить</string>
@@ -19,6 +20,10 @@
     <string name="status_loging_ok">Successfully login</string>
     <string name="status_loging_failed">Authentication failed</string>
     <string name="status_loging_canceled">Authentication canceled</string>
+    <string name="status_balance_server_connection_err">Connection or server error</string>
+    <string name="tv_text_total_title">Ваш баланс</string>
+    <string name="tv_text_expense">Расход</string>
+    <string name="tv_text_income">Доход</string>
 
     <string-array name="tab_titles">
         <item>Доходы</item>

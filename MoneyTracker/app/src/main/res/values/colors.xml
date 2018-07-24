@@ -19,4 +19,9 @@
     <color name="colorItemRVDark">#daa10c</color>
     <color name="colorItemRVSelected">#985305</color>
 
+    <color name="color_balance_total">#3ab7ae</color>
+    <color name="color_balance_expenses">#f76c41</color>
+    <color name="color_balance_income">#fcc31e</color>
+    <color name="color_balance_secondary_text">#95989a</color>
+
 </resources>
